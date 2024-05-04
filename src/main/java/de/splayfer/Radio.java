@@ -1,11 +1,10 @@
 package de.splayfer;
 
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
-import de.splayfer.radio.PlayerManager;
 import de.splayfer.radio.RadioManager;
+import de.splayfer.radio.PlayerManager;
 import de.splayfer.utils.CommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -15,7 +14,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class Radio {
+public class  Radio {
 
     public static JDA jda;
     public static JDABuilder builder;
@@ -33,7 +32,7 @@ public class Radio {
                 .addEventListeners(new ReadyEventClass());
 
         AudioSourceManagers.registerRemoteSources(audioPlayerManager);
-        AudioPlayer player = audioPlayerManager.createPlayer();
+        audioPlayerManager.createPlayer();
         playerManager = new PlayerManager();
 
         MongoDBDatabase.connect();

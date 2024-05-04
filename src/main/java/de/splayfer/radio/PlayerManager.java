@@ -1,4 +1,4 @@
-package de.splayfer.music;
+package de.splayfer.radio;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import de.splayfer.Radio;
@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class PlayerManager {
 
-    public ConcurrentHashMap<Long, AudioPlayer> controller = new ConcurrentHashMap<Long, AudioPlayer>();
+    public ConcurrentHashMap<Long, AudioPlayer> controller = new ConcurrentHashMap<>();
 
     public AudioPlayer getController(long guildid) {
         AudioPlayer mc = null;

@@ -1,4 +1,4 @@
-package de.splayfer.music;
+package de.splayfer.radio;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
