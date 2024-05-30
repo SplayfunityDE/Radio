@@ -22,7 +22,7 @@ public class PlayerManager {
             player = Radio.audioPlayerManager.createPlayer();
             guild.getAudioManager().setSendingHandler(new AudioPlayerSendHandler(player));
             player.addListener(new TrackScheduler());
-            player.setVolume(8);
+            player.setVolume(5);
             this.controller.put(guildid, player);
         }
         return player;
