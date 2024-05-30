@@ -68,7 +68,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>de.splayfer.radio.Radio</mainClass>
+                            <mainClass>de.splayfer.Radio</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
