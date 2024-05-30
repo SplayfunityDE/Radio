@@ -2,6 +2,7 @@ package de.splayfer.radio;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import de.splayfer.Radio;
+import net.dv8tion.jda.api.entities.Guild;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -11,17 +12,20 @@ public class PlayerManager {
     public ConcurrentHashMap<Long, AudioPlayer> controller = new ConcurrentHashMap<>();
 
     public AudioPlayer getController(long guildid) {
-        AudioPlayer mc = null;
+        AudioPlayer player = null;
 
         if(this.controller.containsKey(guildid)) {
-            mc = this.controller.get(guildid);
+            player = this.controller.get(guildid);
         }
         else {
-            mc = Radio.audioPlayerManager.createPlayer();
-
-            this.controller.put(guildid, mc);
+            Guild guild = Radio.jda.getGuildById(guildid);
+            player = Radio.audioPlayerManager.createPlayer();
+            guild.getAudioManager().setSendingHandler(new AudioPlayerSendHandler(player));
+            player.addListener(new TrackScheduler());
+            player.setVolume(8);
+            this.controller.put(guildid, player);
         }
-        return mc;
+        return player;
     }
 
     public long getGuildByPlayerHash(int hash) {

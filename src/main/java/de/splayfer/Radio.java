@@ -6,6 +6,7 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import de.splayfer.radio.RadioManager;
 import de.splayfer.radio.PlayerManager;
 import de.splayfer.utils.CommandManager;
+import dev.lavalink.youtube.YoutubeAudioSourceManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -31,8 +32,9 @@ public class  Radio {
                 .setActivity(Activity.streaming("🌀SPLΛYFUNITY🌀", "https://twitch.tv/splayfer"))
                 .addEventListeners(new ReadyEventClass());
 
-        AudioSourceManagers.registerRemoteSources(audioPlayerManager);
-        audioPlayerManager.createPlayer();
+        audioPlayerManager = new DefaultAudioPlayerManager();
+        audioPlayerManager.registerSourceManager(new YoutubeAudioSourceManager());
+        AudioSourceManagers.registerRemoteSources(audioPlayerManager, YoutubeAudioSourceManager.class);
         playerManager = new PlayerManager();
 
         MongoDBDatabase.connect();
