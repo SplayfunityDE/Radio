@@ -18,6 +18,7 @@ public class AudioLoadResult implements AudioLoadResultHandler {
     }
     @Override
     public void trackLoaded(AudioTrack track) {
+        System.out.println("track loaded");
         Radio.playerManager.getController(this.guild.getIdLong()).playTrack(track);
     }
 
