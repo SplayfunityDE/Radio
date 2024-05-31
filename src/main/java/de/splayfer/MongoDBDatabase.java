@@ -7,6 +7,7 @@ import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 
+import javax.naming.ldap.Rdn;
 import java.util.List;
 
 public class MongoDBDatabase {
@@ -16,8 +17,8 @@ public class MongoDBDatabase {
 
     public static void connect() {
         try {
-            mongoClient = MongoClients.create("mongodb://useradmin:NFC_King10@116.203.79.193");
-            System.out.println("Connected to server: " + "116.203.79.193");
+            mongoClient = MongoClients.create("mongodb://" + Radio.dotenv.get("MONGO_USERNAME") + ":" + Radio.dotenv.get("MONGO_PASSWORD") + "@" + Radio.dotenv.get("MONGO_HOST"));
+            System.out.println("Connected to MongoDB Server");
         } catch (MongoException exception) {
             System.out.println("MongoDB Connection Error: " + exception.getMessage());
         }
