@@ -1,0 +1,8 @@
+services:
+  radio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - /opt/dockerfiles/radio:/bot
