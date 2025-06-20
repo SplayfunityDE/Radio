@@ -6,3 +6,4 @@ services:
     restart: always
     volumes:
       - /opt/dockerfiles/radio:/bot
+    env_file: .env
