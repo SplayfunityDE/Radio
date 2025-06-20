@@ -25,18 +25,11 @@ public class  Radio {
     public static Guild mainGuild;
     public static Guild emojiServerGuild;
     public static Guild emojiServerGuild2;
-    public static String jarDir = new File(Dotenv.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
-    public static Dotenv dotenv;
-    public static File envFile = new File(jarDir, ".env");
     public static AudioPlayerManager audioPlayerManager = new DefaultAudioPlayerManager();
 
     public static void main(String[] args) throws InterruptedException {
 
-        if (envFile.exists())
-            dotenv = Dotenv.configure().directory(jarDir).load();
-        else
-            dotenv.configure().load();
-        builder = JDABuilder.createDefault(dotenv.get("BOT_TOKEN"))
+        builder = JDABuilder.createDefault(System.getenv("BOT_TOKEN"))
                 .setStatus(OnlineStatus.ONLINE)
                 .setActivity(Activity.streaming("🌀SPLΛYFUNITY🌀", "https://twitch.tv/splayfer"))
                 .addEventListeners(new ReadyEventClass());
