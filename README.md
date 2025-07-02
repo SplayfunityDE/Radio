@@ -3,20 +3,25 @@
 <img align="right" src="https://avatars.githubusercontent.com/u/108355696?s=200&v=4" height="200" width="200">
 
 > [!Note]
-> Sei vorsichtig! Alle Änderungen aus `master` werden direkt per Software-Deployment auf das Produktivsystem verteilt!
+> Be careful! Any changes from `master` will be deployed directly to the production system via rsync!
 
-Bei Radio handelt es sich das 24/7 Radiosystem des [SPLAYFUNITY](https://discord.gg/V2Vc5hpRkH) Discord Servers.
+"Radio" combines all features related to 24/7 audio features on the [SPLAYFUNITY](https://discord.gg/V2Vc5hpRkH) Discord server.
+It uses sedmelluq/lavaplayer as it's main api. [Link](https://github.com/sedmelluq/lavaplayer)
 
 ## Features
-Folgende Features sind in dem Botsystem enthalten:
-- 24/7 Radio
-- 100% grafische Oberfläche
+The following features are fully included:
+- 24/7 radio music
+- 100% grafical config options for administrators
 
 ## Backend
-**Datenbank**
-
-Die Speicherung jeglicher statischen Daten erfolgt über eine MongoDB Datenbank, welche Daten auf Basis von JSON-ähnlichen Textblöcken speichert.
+**Database**
+This repository uses the default SPLAYFUNITY MongoDB database.
 
 **Deployment**
+Deployment is accessing varios open source ressources and interfaces.
 
-Die automatische Anwenungsverteilung läuft mittels [Github Actions](https://docs.github.com/de/actions) und wird in dem Workflow sowohl compiliert als auch per SSH Remote Commands in einem container gestartet. Dort werden Diese anschließend über einen systemd Service zu [Docker Images](https://docs.docker.com/engine/reference/commandline/image_ls/) und daraufhin zu [Docker-Containern](https://www.docker.com/resources/what-container/) umgewandelt und gestartet.
+- Github Actions
+- Maven shade plugin
+- ssh
+- rsync
+- docker compose
