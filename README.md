@@ -15,9 +15,11 @@ The following features are fully included:
 
 ## Backend
 **Database**
+
 This repository uses the default SPLAYFUNITY MongoDB database.
 
 **Deployment**
+
 Deployment is accessing varios open source ressources and interfaces.
 
 - Github Actions
