@@ -23,7 +23,7 @@ This repository uses the default SPLAYFUNITY MongoDB database.
 Deployment is accessing varios open source ressources and interfaces.
 
 - Github Actions
-- Gradle Build
+- Gradle Build & Cache
 - ssh
 - rsync
 - docker compose
