@@ -29,8 +29,18 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Cache Gradle packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Build with Gradle
+      run: ./gradlew build --parallel --no-daemon
         
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
@@ -42,7 +52,7 @@ jobs:
       run: ssh-keyscan -p ${{ secrets.PORT }} -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
       
     - name: Deploy with rsync
-      run: rsync -avz /home/runner/work/Radio/Radio/target/radio-1.0-SNAPSHOT.jar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/opt/dockerfiles/radio
+      run: rsync -avz /home/runner/work/Radio/Radio/build/libs/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/opt/dockerfiles/radio
 
     - name: Rebuild container
       uses: appleboy/ssh-action@v1.0.3
