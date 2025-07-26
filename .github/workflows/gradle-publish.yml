@@ -45,7 +45,7 @@ jobs:
       run: ssh-keyscan -p ${{ secrets.PORT }} -H ${{ secrets.HOST }}  >> ~/.ssh/known_hosts
       
     - name: Deploy with rsync
-      run: rsync -avz /home/runner/work/Radio/Radio/target/radio-1.0-SNAPSHOT.jar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/opt/dockerfiles/radio
+      run: rsync -avz /home/runner/work/Radio/Radio/build/libs ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/opt/dockerfiles/radio
 
     - name: Rebuild container
       uses: appleboy/ssh-action@v1.0.3
