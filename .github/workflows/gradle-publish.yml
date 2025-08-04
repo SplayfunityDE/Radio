@@ -68,8 +68,11 @@ jobs:
         SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         SSH_HOST: ${{ secrets.HOST }}     
       
-    - name: Deploy with rsync
+    - name: Deploy Gradle Artifacts
       run: rsync -avz /home/runner/work/Radio/Radio/build/libs/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/opt/dockerfiles/radio
+
+    - name: Sync Docker Configuration
+      run: rsync -avz --include="Dockerfile" --include="docker-compose.yaml" --exclude="*" . ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/opt/dockerfiles/radio
 
     - name: Rebuild container
       run: |
