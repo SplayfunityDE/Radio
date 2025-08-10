@@ -1,8 +1,6 @@
 services:
   radio:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/splayfunityde/radio:latest
     restart: always
     volumes:
       - /opt/dockerfiles/radio:/bot
