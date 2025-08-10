@@ -46,7 +46,7 @@ dependencies {
     api libs.dev.lavalink.youtube.common
 }
 
-group = 'de.splayfer'
+group = 'de.splayfunityde'
 version = '1.0-SNAPSHOT'
 description = 'radio'
 java.sourceCompatibility = JavaVersion.VERSION_21
