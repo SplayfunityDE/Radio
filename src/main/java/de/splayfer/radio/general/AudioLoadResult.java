@@ -1,10 +1,10 @@
-package de.splayfer.radio;
+package de.splayfer.radio.general;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
-import de.splayfer.Radio;
+import de.splayfer.radio.Radio;
 import net.dv8tion.jda.api.entities.Guild;
 
 public class AudioLoadResult implements AudioLoadResultHandler {

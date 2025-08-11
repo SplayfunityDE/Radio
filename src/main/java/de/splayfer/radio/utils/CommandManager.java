@@ -1,8 +1,8 @@
-package de.splayfer.utils;
+package de.splayfer.radio.utils;
 
-import de.splayfer.Radio;
-import de.splayfer.utils.enums.Guilds;
-import de.splayfer.utils.enums.Param;
+import de.splayfer.radio.Radio;
+import de.splayfer.radio.utils.enums.Guilds;
+import de.splayfer.radio.utils.enums.Param;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.interactions.commands.CommandInteraction;

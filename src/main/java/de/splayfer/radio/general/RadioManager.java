@@ -1,10 +1,10 @@
-package de.splayfer.radio;
+package de.splayfer.radio.general;
 
-import de.splayfer.MongoDBDatabase;
-import de.splayfer.Radio;
-import de.splayfer.radio.commands.RadioCommand;
-import de.splayfer.utils.CommandManager;
-import de.splayfer.utils.enums.Guilds;
+import de.splayfer.radio.MongoDBDatabase;
+import de.splayfer.radio.Radio;
+import de.splayfer.radio.general.commands.RadioCommand;
+import de.splayfer.radio.utils.CommandManager;
+import de.splayfer.radio.utils.enums.Guilds;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;

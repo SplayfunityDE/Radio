@@ -1,4 +1,4 @@
-package de.splayfer;
+package de.splayfer.radio;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
@@ -7,7 +7,6 @@ import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 
-import javax.naming.ldap.Rdn;
 import java.util.List;
 
 public class MongoDBDatabase {

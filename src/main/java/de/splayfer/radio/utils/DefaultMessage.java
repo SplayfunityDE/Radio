@@ -1,4 +1,4 @@
-package de.splayfer.utils;
+package de.splayfer.radio.utils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;

@@ -1,6 +1,6 @@
-package de.splayfer.radio;
+package de.splayfer.radio.general;
 
-import de.splayfer.MongoDBDatabase;
+import de.splayfer.radio.MongoDBDatabase;
 import org.bson.Document;
 
 import java.util.ArrayList;

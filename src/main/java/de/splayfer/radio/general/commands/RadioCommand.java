@@ -1,8 +1,8 @@
-package de.splayfer.radio.commands;
+package de.splayfer.radio.general.commands;
 
-import de.splayfer.radio.RadioManager;
-import de.splayfer.radio.RadioStream;
-import de.splayfer.utils.DefaultMessage;
+import de.splayfer.radio.general.RadioManager;
+import de.splayfer.radio.general.RadioStream;
+import de.splayfer.radio.utils.DefaultMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.entities.emoji.Emoji;

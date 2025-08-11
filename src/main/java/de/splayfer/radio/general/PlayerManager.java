@@ -1,7 +1,7 @@
-package de.splayfer.radio;
+package de.splayfer.radio.general;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
-import de.splayfer.Radio;
+import de.splayfer.radio.Radio;
 import net.dv8tion.jda.api.entities.Guild;
 
 import java.util.concurrent.ConcurrentHashMap;

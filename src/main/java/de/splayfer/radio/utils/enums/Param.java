@@ -1,4 +1,4 @@
-package de.splayfer.utils.enums;
+package de.splayfer.radio.utils.enums;
 
 public enum Param {
     GUILD_ONLY,

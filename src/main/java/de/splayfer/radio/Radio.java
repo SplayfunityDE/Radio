@@ -1,11 +1,11 @@
-package de.splayfer;
+package de.splayfer.radio;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
-import de.splayfer.radio.RadioManager;
-import de.splayfer.radio.PlayerManager;
-import de.splayfer.utils.CommandManager;
+import de.splayfer.radio.general.RadioManager;
+import de.splayfer.radio.general.PlayerManager;
+import de.splayfer.radio.utils.CommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -13,8 +13,6 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-
-import java.io.File;
 
 public class  Radio {
 
