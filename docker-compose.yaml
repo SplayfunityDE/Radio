@@ -2,6 +2,4 @@ services:
   radio:
     image: ghcr.io/splayfunityde/radio:latest
     restart: always
-    volumes:
-      - /opt/dockerfiles/radio:/bot
     env_file: .env
