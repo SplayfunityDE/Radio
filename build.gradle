@@ -14,7 +14,7 @@ version = '1.0.0'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'de.splayfer.Radio'
+        attributes 'Main-Class': 'de.splayfer.radio.Radio'
     }
     // optional: um sicherzugehen, dass du auch compiled class files bekommst
     from {
