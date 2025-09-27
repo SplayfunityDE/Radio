@@ -14,7 +14,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   SERVICE_NAME: radio
-  REMOTE_PATH: /opt/dockerfiles/radio
+  REMOTE_PATH: /opt/dockerfiles/splayfunityde
   GHCR_USER: splayfery
   TAGS: latest
 
