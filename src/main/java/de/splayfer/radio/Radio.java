@@ -26,7 +26,7 @@ public class  Radio {
 
     public static void main(String[] args) throws InterruptedException {
 
-        builder = JDABuilder.createDefault(System.getenv("BOT_TOKEN"))
+        builder = JDABuilder.createDefault(System.getenv("RADIO_BOT_TOKEN"))
                 .setStatus(OnlineStatus.ONLINE)
                 .setActivity(Activity.streaming("🌀SPLΛYFUNITY🌀", "https://twitch.tv/splayfer"))
                 .addEventListeners(new ReadyEventClass());
