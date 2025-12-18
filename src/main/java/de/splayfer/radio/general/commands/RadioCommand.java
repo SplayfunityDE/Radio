@@ -4,6 +4,13 @@ import de.splayfer.radio.general.RadioManager;
 import de.splayfer.radio.general.RadioStream;
 import de.splayfer.radio.utils.DefaultMessage;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.components.actionrow.ActionRow;
+import net.dv8tion.jda.api.components.buttons.Button;
+import net.dv8tion.jda.api.components.label.Label;
+import net.dv8tion.jda.api.components.selections.EntitySelectMenu;
+import net.dv8tion.jda.api.components.selections.StringSelectMenu;
+import net.dv8tion.jda.api.components.textinput.TextInput;
+import net.dv8tion.jda.api.components.textinput.TextInputStyle;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
@@ -13,13 +20,7 @@ import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionE
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.InteractionHook;
-import net.dv8tion.jda.api.interactions.components.ActionRow;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
-import net.dv8tion.jda.api.interactions.components.selections.EntitySelectMenu;
-import net.dv8tion.jda.api.interactions.components.selections.StringSelectMenu;
-import net.dv8tion.jda.api.interactions.components.text.TextInput;
-import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
-import net.dv8tion.jda.api.interactions.modals.Modal;
+import net.dv8tion.jda.api.modals.Modal;
 import net.dv8tion.jda.api.utils.messages.MessageEditBuilder;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class RadioCommand extends ListenerAdapter {
             if (radioStreamList.size() > 24)
                 hooks.put(event.replyEmbeds(banner.build(), channelEmbed.build()).addComponents(ActionRow.of(selectMenu.build()), ActionRow.of(Button.secondary("radio.channel.nextpage", "Nächste Seite").withEmoji(Emoji.fromFormatted("➡\uFE0F")))).setEphemeral(true).complete(), 1);
             else
-                event.replyEmbeds(banner.build(), channelEmbed.build()).addActionRow(selectMenu.build()).setEphemeral(true).queue();
+                event.replyEmbeds(banner.build(), channelEmbed.build()).setComponents(ActionRow.of(selectMenu.build())).setEphemeral(true).queue();
 
             EmbedBuilder configEmbed = new EmbedBuilder();
             configEmbed.setColor(0xffa600);
@@ -83,16 +84,16 @@ public class RadioCommand extends ListenerAdapter {
             else
                 configEmbed.addField("", "**`NICHT FESTGELEGT`**", true);
             configEmbed.setImage("https://cdn.discordapp.com/attachments/880725442481520660/905443533824077845/auto_faqw.png");
-            event.getHook().sendMessageEmbeds(configEmbed.build()).addActionRow(EntitySelectMenu.create("radio.config.select", EntitySelectMenu.SelectTarget.CHANNEL).setChannelTypes(ChannelType.VOICE, ChannelType.STAGE).setPlaceholder("\uD83D\uDCC2 Lege einen Sprachkanal fest").build()).setEphemeral(true).queue();
+            event.getHook().sendMessageEmbeds(configEmbed.build()).setComponents(ActionRow.of(EntitySelectMenu.create("radio.config.select", EntitySelectMenu.SelectTarget.CHANNEL).setChannelTypes(ChannelType.VOICE, ChannelType.STAGE).setPlaceholder("\uD83D\uDCC2 Lege einen Sprachkanal fest").build())).setEphemeral(true).queue();
         }
     }
 
     @Override
     public void onButtonInteraction(ButtonInteractionEvent event) {
-        if (event.getButton().getId().startsWith("radio")) {
+        if (event.getButton().getCustomId().startsWith("radio")) {
             List<RadioStream> radioStreamList = RadioStream.getAllRadioStreams();
             int page;
-            switch (event.getButton().getId().substring(6)) {
+            switch (event.getButton().getCustomId().substring(6)) {
                 case "channel.nextpage":
                     page = hooks.get(getHookWithId(event.getMessageIdLong()));
                     if (radioStreamList.size() > 24 * page) {
@@ -155,16 +156,16 @@ public class RadioCommand extends ListenerAdapter {
 
     @Override
     public void onStringSelectInteraction(StringSelectInteractionEvent event) {
-        if (event.getSelectMenu().getId().startsWith("radio")) {
-            switch (event.getSelectMenu().getId().substring(6)) {
+        if (event.getSelectMenu().getCustomId().startsWith("radio")) {
+            switch (event.getSelectMenu().getCustomId().substring(6)) {
                 case "channel.select":
                     if (event.getSelectedOptions().get(0).getValue().equals("radio.channel.addchannel")) {
                         event.replyModal(Modal.create("radio.channel.addchannel", "Radiokanal hinzufügen")
                                 .addComponents(
-                                        ActionRow.of(TextInput.create("name", "Name", TextInputStyle.SHORT)
+                                        Label.of("Name", TextInput.create("name", TextInputStyle.SHORT)
                                                 .setPlaceholder("Name des Senders")
                                                 .setRequired(true).build()),
-                                        ActionRow.of(TextInput.create("url", "Url", TextInputStyle.PARAGRAPH)
+                                        Label.of("Url", TextInput.create("url", TextInputStyle.PARAGRAPH)
                                                 .setPlaceholder("Link zum Stream")
                                                 .setRequired(true).build()))
                                 .build()).queue();
@@ -192,8 +193,8 @@ public class RadioCommand extends ListenerAdapter {
 
     @Override
     public void onEntitySelectInteraction(EntitySelectInteractionEvent event) {
-        if (event.getSelectMenu().getId().startsWith("radio")) {
-            switch (event.getSelectMenu().getId().substring(6)) {
+        if (event.getSelectMenu().getCustomId().startsWith("radio")) {
+            switch (event.getSelectMenu().getCustomId().substring(6)) {
                 case "config.select":
                     RadioManager.updateRadioChannel(event.getMentions().getChannels().get(0));
                     event.editMessageEmbeds(EmbedBuilder.fromData(event.getMessage().getEmbeds().get(0).toData()).clearFields().addField("", "Kanal", true).addField("", event.getMentions().getChannels().get(0).getAsMention(), true).build()).queue();
