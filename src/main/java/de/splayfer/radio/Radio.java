@@ -1,5 +1,6 @@
 package de.splayfer.radio;
 
+import club.minnced.discord.jdave.interop.JDaveSessionFactory;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
@@ -9,10 +10,15 @@ import de.splayfer.radio.utils.CommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.audio.AudioModuleConfig;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.internal.utils.JDALogger;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class  Radio {
 
@@ -26,10 +32,16 @@ public class  Radio {
 
     public static void main(String[] args) throws InterruptedException {
 
+        JDALogger.setFallbackLoggerEnabled(false);
+
+        //Supress invalid cookie warnings for music http requests
+        Logger.getLogger("org.apache.http.client.protocol.ResponseProcessCookies").setLevel(Level.SEVERE);
+
         builder = JDABuilder.createDefault(System.getenv("RADIO_BOT_TOKEN"))
                 .setStatus(OnlineStatus.ONLINE)
                 .setActivity(Activity.streaming("🌀SPLΛYFUNITY🌀", "https://twitch.tv/splayfer"))
-                .addEventListeners(new ReadyEventClass());
+                .addEventListeners(new ReadyEventClass())
+                .setAudioModuleConfig(new AudioModuleConfig().withDaveSessionFactory(new JDaveSessionFactory()));
 
         AudioSourceManagers.registerRemoteSources(audioPlayerManager);
         audioPlayerManager.createPlayer();
