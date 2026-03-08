@@ -32,10 +32,10 @@ public class  Radio {
 
     public static void main(String[] args) throws InterruptedException {
 
-        JDALogger.setFallbackLoggerEnabled(false);
+        //JDALogger.setFallbackLoggerEnabled(false);
 
         //Supress invalid cookie warnings for music http requests
-        Logger.getLogger("org.apache.http.client.protocol.ResponseProcessCookies").setLevel(Level.SEVERE);
+        //Logger.getLogger("org.apache.http.client.protocol.ResponseProcessCookies").setLevel(Level.SEVERE);
 
         builder = JDABuilder.createDefault(System.getenv("RADIO_BOT_TOKEN"))
                 .setStatus(OnlineStatus.ONLINE)
