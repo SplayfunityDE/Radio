@@ -52,7 +52,11 @@ jobs:
           ${{ runner.os }}-gradle-
 
     - name: Build with Gradle
-      run: ./gradlew build --parallel --no-daemon --configuration-cache
+      uses: yumemi-inc/setup-java-gradle@v3
+      with:
+        cache-read-only: false
+        gradle-home-cache-cleanup: true
+    - run: ./gradlew build --parallel --no-daemon --configuration-cache
 
     - name: Set up QEMU (for ARM emulation)
       uses: docker/setup-qemu-action@v3
