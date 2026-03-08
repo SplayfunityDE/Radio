@@ -30,18 +30,27 @@ repositories {
 }
 
 dependencies {
-    implementation("net.dv8tion:JDA:6.2.0")
+    implementation("net.dv8tion:JDA:6.3.1")
     implementation(platform("org.mongodb:mongodb-driver-bom:5.6.2"))
     implementation 'org.mongodb:mongodb-driver-sync'
 
     implementation('dev.arbjerg:lavaplayer:2.2.4')
     implementation('dev.lavalink.youtube:common:1.16.0')
+
+    // Interface to use for libraries
+    implementation("club.minnced:jdave-api:0.1.7")
+
+    // Compiled natives for libdave for the specified platform
+    implementation("club.minnced:jdave-native-linux-x86-64:0.1.7")
+    implementation("club.minnced:jdave-native-linux-aarch64:0.1.7")
+    implementation("club.minnced:jdave-native-win-x86-64:0.1.7")
+    implementation("club.minnced:jdave-native-darwin:0.1.7")
 }
 
 group = 'de.splayfunityde'
 version = '1.0-SNAPSHOT'
 description = 'radio'
-java.sourceCompatibility = JavaVersion.VERSION_21
+java.sourceCompatibility = JavaVersion.VERSION_25
 
 publishing {
     publications {
